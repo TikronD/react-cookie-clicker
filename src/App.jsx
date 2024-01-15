@@ -1,5 +1,6 @@
 // Import functions and hooks from 'react' library
 import React, { useState, useEffect } from "react";
+import * as Copywrite from "./Components/Copywrite.jsx"; // Import everything inside copywrite.jxs
 
 // Define main component for 'App'
 export default function App() {
@@ -13,6 +14,26 @@ export default function App() {
   const [cookies, setCookies] = useState(obj.cookies);
   const [cps, setCps] = useState(obj.cps);
   const [cookieStart, startCount] = useState(obj.cookieStart);
+
+  let message;
+
+  if (cookies < 5 && cps < 1) {
+    message = "Start by pressing the cookie";
+  } else if (cookies >= 5 && cookies < 10) {
+    message = "Wow, you are doing great, keep going!";
+  } else if (cookies >= 10 && cookies < 20) {
+    message = "Now you can buy a CPM upgrade!";
+  } else if (cookies >= 20 && cookies < 50) {
+    message = "I'm having so much fun, are you?";
+  } else if (cookies >= 50 && cookies < 80) {
+    message = "You are still clicking?";
+  } else if (cookies >= 80 && cookies < 90) {
+    message = "That's really it, go and do something meaningful!";
+  } else if (cookies >= 90 && cookies < 300) {
+    message = "Just kidding, party on!!";
+  } else if (cookies >= 200) {
+    message = "Keep going man, don't stop now!";
+  }
 
   // inbuild function renders - anything in this function happens when the screen loads
   useEffect(
@@ -88,7 +109,7 @@ export default function App() {
       <div className="container">
         <div className="item top"></div>
         <div className="item top">
-          <h1>Play the worlds prettiest cookie clicker</h1>
+          <h1>{message}</h1>
         </div>
         <div className="item top"></div>
         <div className="item main"></div>
@@ -113,7 +134,14 @@ export default function App() {
           )}
         </div>
         <div className="item main"></div>
-        <div className="item bottom"></div>
+        <div className="item bottom">
+          {/* Components from Copywrite functions */}
+          <span>
+            {Copywrite.default()}
+            {Copywrite.Title()}
+            {Copywrite.Name()}
+          </span>
+        </div>
         <div className="item bottom">
           {" "}
           {/* Display a message if the player can buy an upgrade */}
